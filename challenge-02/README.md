@@ -112,9 +112,12 @@ function fun(x,y,z){
 
 
 // Invoque a função acima utilizando todas as possibilidades (com nenhum argumento, com um, com dois e com três.) Coloque um comentário de linha ao lado da função com o resultado de cada invocação.
-?
-```
+
 fun(); // false
 fun(10); // 10
 fun(10,20); // 30
 fun(10,20,10); //3
+
+
+```
+
