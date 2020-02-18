@@ -55,7 +55,7 @@ Crie uma função com as seguintes características:
 
 function threeArg(x,y,z){
  if(x == undefined || y == undefined || z == undefined){
-return;
+return 'Preencha todos os valores corretamente!';
 }
 var result = (x * y * z) + 2; 
 
