@@ -20,6 +20,8 @@ isTruthy(''); //false
 isTruthy(""); //false
 isTruthy(undefined); //false
 isTruthy(-0); //false
+isTruthy(NaN); //false
+isTruthy(null); //false
 
 /*
 Invoque a função criada acima passando como parâmetro 10 valores `truthy`.
