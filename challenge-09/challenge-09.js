@@ -71,7 +71,7 @@
 	function calculator( x, y ){
 		return function( callback ){
 			return callback( x, y );
-		}
+		};
 	}
 
 	/*
