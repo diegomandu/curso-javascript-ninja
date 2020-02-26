@@ -1,4 +1,4 @@
- (function(){
+ (function( window, document ){
  	'use strict';
 	 /*
 	1. Envolva todo o conteúdo desse desafio em uma IIFE.
