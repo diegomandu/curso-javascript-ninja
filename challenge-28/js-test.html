@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+  	.address-info input{
+  		display:block;
+  	}
+  </style>
+</head>
+<body>
+	<h3>Search CEP</h3>
+	<form name="cep-form">
+	  	<input type="text" name="CEP" data-js="CEP">
+	  	<button>Submit</button>
+	</form>
+
+	<h3>ADDRESS INFO</h3>
+	<div class="address-info" data-js="address-info">
+	  	<p><label>Street</label><input type="text" name="street" data-js="street" readonly="true"></p>
+	  	<p><label>Neighborhood</label><input type="text" name="neighborhood" data-js="neighborhood" readonly="true"></p>
+	  	<p><label>State</label><input type="text" name="state" data-js="state" readonly="true"></p>
+	  	<p><label>City</label><input type="text" name="city" data-js="city" readonly="true"></p>
+	  	<p><label>CEP</label><input type="text" name="CEP" readonly="true"></p>
+	</div>
+
+	<h3>Requisition status</h3>
+	<div class="Requisition" data-js="requisition-status"> 
+		<p></p>
+	</div>
+
+	  <script src="js-tests.js"></script>
+</body>
+</html>
