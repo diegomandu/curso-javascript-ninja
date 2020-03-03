@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+  	input{
+  		
+  	}
+  </style>
+</head>
+<body>
+	<h3 data-js="company-name">CADASTRO DE CARROS</h3>
+	<span data-js="cell-phone">CEL</span>
+	
+	<form data-js="car-register-form">
+		<p>Image: <input type="text" name="car-image" data-js="image"></p>
+		<p>Model: <input type="text" name="model" data-js="model"></p>
+		<p>Year: <input type="text" name="year" data-js="year"></p>
+		<p>Plate: <input type="text" name="plate" data-js="plate"></p>
+		<p>Color: <input type="text" name="color" data-js="color"></p>
+		<button data-js="register" >Register</button>	
+	</form>
+
+	<table data-js="car-register-table">
+		<tr>
+			<th>Image</th>
+			<th>Model</th>
+			<th>Year</th>
+			<th>Plate</th>
+			<th>Color</th>
+		</tr>
+	</table>
+
+	<script src="dom.js"></script>
+	<script src="js-tests.js"></script>
+</body>
+</html>
