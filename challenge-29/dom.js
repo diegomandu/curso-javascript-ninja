@@ -1,86 +1,115 @@
-(function(win, doc) {
-  'use strict';
+(function(win, doc){
+	'use strict';
+	
+			function DOM(event){
+				if( !(this instanceof DOM) )
+					return new DOM(event);
+				this.functionName;
+				this.element = doc.querySelectorAll(event);
+			}
 
-  /*
-  Vamos estruturar um pequeno app utilizando módulos.
-  Nosso APP vai ser um cadastro de carros. Vamos fazê-lo por partes.
-  A primeira etapa vai ser o cadastro de veículos, de deverá funcionar da
-  seguinte forma:
-  - No início do arquivo, deverá ter as informações da sua empresa - nome e
-  telefone (já vamos ver como isso vai ser feito)
-  - Ao abrir a tela, ainda não teremos carros cadastrados. Então deverá ter
-  um formulário para cadastro do carro, com os seguintes campos:
-    - Imagem do carro (deverá aceitar uma URL)
-    - Marca / Modelo
-    - Ano
-    - Placa
-    - Cor
-    - e um botão "Cadastrar"
-  Logo abaixo do formulário, deverá ter uma tabela que irá mostrar todos os
-  carros cadastrados. Ao clicar no botão de cadastrar, o novo carro deverá
-  aparecer no final da tabela.
-  Agora você precisa dar um nome para o seu app. Imagine que ele seja uma
-  empresa que vende carros. Esse nosso app será só um catálogo, por enquanto.
-  Dê um nome para a empresa e um telefone fictício, preechendo essas informações
-  no arquivo company.json que já está criado.
-  Essas informações devem ser adicionadas no HTML via Ajax.
-  Parte técnica:
-  Separe o nosso módulo de DOM criado nas últimas aulas em
-  um arquivo DOM.js.
-  E aqui nesse arquivo, faça a lógica para cadastrar os carros, em um módulo
-  que será nomeado de "app".
-  */
+			DOM.prototype.on = function on(event, callback){
+					  Array.prototype.forEach.call(this.element,function(item, index){
+						  item.addEventListener(event,item.functionName = callback);
+					});
+			};
 
-var app =  (function appController(){
-      var $inputFields    = new DOM('[data-js="car-register-form"] input');
-      var newTr           = document.createElement('tr');
-      var $table          = new DOM('[data-js="car-register-table"]');
+			DOM.prototype.off = function off(event){
+					Array.prototype.forEach.call(this.element, function(item, index){
+						item.removeEventListener(event, item.functionName);
+					});
+			};
 
-      return{
-        init: function init() {
-          this.initEvents();
-        },
+			DOM.prototype.get = function get(){
+					var items = [];
+					if(arguments.length === 0)
+						return this.element[0];
+					Array.prototype.forEach.call(this.element, function(item, index){
+						 items.push(item);
+					});
+					return items;
+			};
 
-        initEvents: function initEvents(){
-          var $registerButton   = new DOM('[data-js="register"]');
-          $registerButton.on('click', this.handleRegisterButton);
-        },
+			DOM.prototype.forEach = function forEach(){
+				Array.prototype.forEach.apply(this.element, arguments);
+			};
 
-        handleRegisterButton: function handleRegisterButton(event){
-          event.preventDefault();
-          console.log(app);
-          $inputFields.forEach(app.insertValuesAtTable);
-        },
+			DOM.prototype.map = function map(){
+				Array.prototype.map.apply(this.element, arguments);
+			};
 
-        insertValuesAtTable: function insertValuesAtTable(item,index, array){
-          if(app.isTimeToCreateNewRow(index))
-            newTr = app.createNewTr(newTr);
-          var newTd = app.createElement("td");  
-          var node = app.createTextNode(item.value);
-          newTd.appendChild(node);
-          newTr.appendChild(newTd);
-          $table.element[0].appendChild(newTr);
-        },
+			DOM.prototype.filter = function filter(){
+				Array.prototype.filter.apply(this.element, arguments);
+			};
 
-        isTimeToCreateNewRow:  function isTimeToCreateNewRow(index){
-          return index === 0;
-        },
+			DOM.prototype.reduce = function reduce(){
+				Array.prototype.reduce.apply(this.element, arguments);
+			};
 
-        createNewTr: function createNewTr(tr){
-          tr = this.createElement('tr');
-          return tr;
-        },
+			DOM.prototype.reduceRight = function reduceRight(){
+				Array.prototype.reduce.apply(this.element, arguments);
+			};
 
-        createElement: function createElement(element){
-          return document.createElement(element);
-        },
+			DOM.prototype.every = function every(){
+				Array.prototype.reduce.apply(this.element, arguments);
+			};
 
-        createTextNode: function createTextNode(text){
-          return doc.createTextNode(text);
-        }
-      };
-  })();
+			DOM.prototype.some = function some(){
+				Array.prototype.reduce.apply(this.element, arguments);
+			};
 
-  app.init();
+			DOM.stripTag = function  stripTag(tag){
+          		var regex = new RegExp('(^<)(\\w+)(>$)','g');
+          		return tag.replace(regex, '$2');
+        	}
+
+        	DOM.createAndAppend = function createAndAppend(createElement,append){
+	          if(!DOM.isTag(createElement))
+	           return append.appendChild(doc.createTextNode(createElement));
+	          else
+	          createElement = DOM.stripTag(createElement);
+	          var tag = doc.createElement(createElement);
+	          return append.appendChild(tag);
+        	}
+
+        	DOM.isTag = function isTag( tag ){
+				var regex = new RegExp('^<\\w+>$','g');
+           		return regex.test(tag);
+			}
+	
+			DOM.isArray = function isArray( type ){
+				return Object.prototype.toString.call(type) === '[object Array]' ? true : false;
+			}
+
+			DOM.isObject = function isObject( type ){
+				return Object.prototype.toString.call(type) === '[object Object]' ? true : false;
+			}
+
+			DOM.isFunction = function isFunction( type ){
+				return Object.prototype.toString.call(type) === '[object Function]' ? true : false;
+			}
+
+			DOM.isString = function isString( type ){
+				return Object.prototype.toString.call(type) === '[object String]' ? true : false;
+			}
+
+			DOM.isNumber = function isNumber( type ){
+				return Object.prototype.toString.call(type) === '[object Number]' ? true : false;
+			}
+
+			DOM.isBoolean = function isBoolean( type ){
+				return Object.prototype.toString.call(type) === '[object Boolean]' ? true : false;
+			}
+
+			DOM.isNull = function isNull( type ){
+				if(Object.prototype.toString.call(type) ===  '[object Null]')
+					return true;
+				if(Object.prototype.toString.call(type) === '[object Undefined]')
+					return true;
+				return false;
+			}
+
+
+	win.DOM = DOM;
 
 })(window, document);
